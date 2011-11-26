@@ -8,7 +8,7 @@ on [BeagleBoard](http://beagleboard.org)
 Example of usage
 ----------------
 
-For example reading of usage see `example_read.c` file and for write see `example_write.c`
+For example reading of usage see `example_read.c` file and for writting see `example_write.c`
 
 
 
