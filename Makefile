@@ -10,9 +10,11 @@ install: gpio.o
 	install lib$(TARGET).a /usr/lib/lib$(TARGET).a
 	install *.h /usr/include/
 
-example_write: example_write.c
+example: example_write, example_write
+
+example_write:example_write.c
 	$(CC) example_write.c -lgpio -o example_write
 
-example_read: example_read.c
+example_read:example_read.c
 	$(CC) example_read.c -lgpio -o example_read
 
