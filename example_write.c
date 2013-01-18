@@ -15,7 +15,7 @@ int main(void)
 	    return -1;
 	}
 	
-	while(error)
+	while(!error)
 	{
 	    error = gpio_write(157,1);
 	    sleep(1);
