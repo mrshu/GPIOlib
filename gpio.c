@@ -20,18 +20,19 @@ int gpio_open(int port, int DDR)
 	    return -1;
 	
 	f = fopen("/sys/class/gpio/export", "w");
-	if(fprintf(f, "%d\n", port) < 0)
+	if (fprintf(f, "%d\n", port) < 0)
 	    return -2;
 	fclose(f);
 
 	sprintf(file, "/sys/class/gpio/gpio%d/direction", port);
 	f = fopen(file, "w");
-	if(DDR)
+
+	if (!DDR)
 	    sprintf(ris,IN);
 	else
 	    sprintf(ris,OUT);
 	    
-	if(fprintf(f, "%s",ris) < 0)
+	if (fprintf(f, "%s",ris) < 0)
 	    return -2;
 	
 	fclose(f);
@@ -73,18 +74,18 @@ int gpio_write(int port, int value){
 	FILE *f;
 	char file[35],ris[5];
 	
-	if(gpio_pin_exists(port) == -1)
+	if (gpio_pin_exists(port) == -1)
 	    return -1;
 	
 	sprintf(file, "/sys/class/gpio/gpio%d/value", port);
 	f = fopen(file, "w");
 
-	if (value)
+	if (!value)
 	    sprintf(ris,LOW);
 	else
 	    sprintf(ris,HIGH);
 	
-	if(fprintf(f, "%s",ris) < 0)
+	if (fprintf(f, "%s",ris) < 0)
 	    return -2;
 	
 	fclose(f);
