@@ -12,7 +12,7 @@ int main(void)
 	if(gpio_open(157,1) < 0)
 	{
 	    puts("Unable to open PIN file");
-	    exit(1);
+	    return -1;
 	}
 	
 	while(error)
