@@ -1,6 +1,6 @@
 #include "gpio.h"
 
-int pin_exist(int port)
+int gpio_pin_exists(int port)
 {
 	int pin[] = {135,136,137,138,139,143,144,145,146};
 	int i;
@@ -16,7 +16,7 @@ int gpio_open(int port, int DDR)
 	FILE *f;
 	char file[35],ris[5];
 	
-	if(pin_exist(port) == -1)
+	if(gpio_pin_exists(port) == -1)
 	    return -1;
 	
 	f = fopen("/sys/class/gpio/export", "w");
@@ -43,7 +43,7 @@ int gpio_close(int port)
 {
 	FILE *f;
 	
-	if(pin_exist(port) == -1)
+	if(gpio_pin_exists(port) == -1)
 	    return -1;
 	
 	f = fopen(UNEXPORT, "w");
@@ -59,7 +59,7 @@ int gpio_read(int port)
 	char file[31];
 	int i;
 	
-	if(pin_exist(port) == -1)
+	if(gpio_pin_exists(port) == -1)
 	    return -1;
 	
 	sprintf(file, "/sys/class/gpio/gpio%d/value", port);
@@ -73,11 +73,12 @@ int gpio_write(int port, int value){
 	FILE *f;
 	char file[35],ris[5];
 	
-	if(pin_exist(port) == -1)
+	if(gpio_pin_exists(port) == -1)
 	    return -1;
 	
 	sprintf(file, "/sys/class/gpio/gpio%d/value", port);
 	f = fopen(file, "w");
+
 	if (value)
 	    sprintf(ris,LOW);
 	else
