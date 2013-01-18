@@ -3,8 +3,7 @@
 
 int main(void)
 {
-	if(gpio_open(157,0) < 0)
-	{
+	if (gpio_open(157, GPIO_READ) < 0) {
 	    puts("Unable to open PIN file");
 	    return -1;
 	}

@@ -9,7 +9,7 @@ int main(void)
 {
 	int error = 0;
 	
-	if (gpio_open(157,1) < 0) {
+	if (gpio_open(157, GPIO_WRITE) < 0) {
 	    puts("Unable to open PIN file");
 	    return -1;
 	}
