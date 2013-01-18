@@ -19,7 +19,7 @@ int gpio_open(int port, int DDR)
 	if(gpio_pin_exists(port) == -1)
 	    return -1;
 	
-	f = fopen("/sys/class/gpio/export", "w");
+	f = fopen(EXPORT, "w");
 	if (fprintf(f, "%d\n", port) < 0)
 	    return -2;
 	fclose(f);

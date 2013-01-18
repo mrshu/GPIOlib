@@ -9,6 +9,8 @@
 #define OUT "out\n"
 #define LOW "0\n"
 #define HIGH "1\n"
+#define GPIO_READ 0
+#define GPIO_WRITE 1
 
 
 int gpio_open(int port, int DDR);
