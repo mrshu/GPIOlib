@@ -7,13 +7,22 @@
 
 int main(void)
 {
-	gpio_open(157,1);
-	while(1){
-		gpio_write(157,1);
-		sleep(1);
-		gpio_write(157,0);
-		sleep(1);
+	int error=0;
+	
+	if(gpio_open(157,1) < 0)
+	{
+	    puts("Unable to open PIN file");
+	    return -1;
 	}
+	
+	while(!error)
+	{
+	    error = gpio_write(157,1);
+	    sleep(1);
+	    error = gpio_write(157,0);
+	    sleep(1);
+	};
+	
 	gpio_close(157);
 	return 0;
 }
