@@ -16,8 +16,8 @@
 int gpio_open(int port, int DDR);
 int gpio_close(int port);
 int gpio_read(int port);
-int gpio_write(int port,int value);
-int pin_exist(int port);
+int gpio_write(int port, int value);
+int gpio_pin_exists(int port);
 
 #endif
 
