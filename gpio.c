@@ -79,9 +79,9 @@ int gpio_write(int port, int value){
 	sprintf(file, "/sys/class/gpio/gpio%d/value", port);
 	f = fopen(file, "w");
 	if (value)
-	    sprintf(ris,"0\n");
+	    sprintf(ris,LOW);
 	else
-	    sprintf(ris,"1\n");
+	    sprintf(ris,HIGH);
 	
 	if(fprintf(f, "%s",ris) < 0)
 	    return -2;
