@@ -1,50 +1,66 @@
 #include "gpio.h"
-void gpio_open(int port, int DDR)
+int gpio_open(int port, int DDR)
 {
 	FILE *f;
+	char file[35],ris[5];
+	
 	f = fopen("/sys/class/gpio/export", "w");
-	fprintf(f, "%d\n", port);
+	if(fprintf(f, "%d\n", port) < 0)
+	    return -1;
 	fclose(f);
 
-	char file[128];
 	sprintf(file, "/sys/class/gpio/gpio%d/direction", port);
 	f = fopen(file, "w");
-	if (DDR == 0)	fprintf(f, "in\n");
-	else		fprintf(f, "out\n");
+	if(DDR)
+	    sprintf(ris,"in\n");
+	else
+	    sprintf(ris,"out\n");
+	    
+	if(fprintf(f, "%s",ris) < 0)
+	    return -1;
+	
 	fclose(f);
+	
+	return 0;
 }
 
-void gpio_close(int port)
+int gpio_close(int port)
 {
 	FILE *f;
 	f = fopen("/sys/class/gpio/unexport", "w");
-	fprintf(f, "%d\n", port);
+	if(fprintf(f, "%d\n", port) < 0)
+	    return -1;
 	fclose(f);
+	return 0;
 }
 
 int gpio_read(int port)
 {
 	FILE *f;
+	char file[30];
+	int i;
 	
-	char file[128];
 	sprintf(file, "/sys/class/gpio/gpio%d/value", port);
 	f = fopen(file, "r");
-
-	int i;
 	fscanf(f, "%d", &i);
 	fclose(f);
 	return i;
-
 }
-void gpio_write(int port, int value){
-	FILE *f;
 
-	char file[128];
+int gpio_write(int port, int value){
+	FILE *f;
+	char file[30],ris[5];
+	
 	sprintf(file, "/sys/class/gpio/gpio%d/value", port);
 	f = fopen(file, "w");
+	if (value)
+	    sprintf(ris,"0\n");
+	else
+	    sprintf(ris,"1\n");
 	
-	if (value == 0)	fprintf(f, "0\n");
-	else		fprintf(f, "1\n");
+	if(fprintf(f, "%s",ris) < 0)
+	    return -1;
 	
 	fclose(f);
+	return 0;
 }
