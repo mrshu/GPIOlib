@@ -2,6 +2,7 @@
 #define _GPIO_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
 
 int gpio_open(int port, int DDR);
