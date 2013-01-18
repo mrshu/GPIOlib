@@ -7,6 +7,8 @@
 #define UNEXPORT "/sys/class/gpio/unexport"
 #define IN "in\n"
 #define OUT "out\n"
+#define LOW "0\n"
+#define HIGH "1\n"
 
 
 int gpio_open(int port, int DDR);
