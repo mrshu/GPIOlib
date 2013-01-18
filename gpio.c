@@ -26,7 +26,7 @@ int gpio_open(int port, int DDR)
 
 	sprintf(file, "/sys/class/gpio/gpio%d/direction", port);
 	f = fopen(file, "w");
-	if(DDR)
+	if(!DDR)
 	    sprintf(ris,IN);
 	else
 	    sprintf(ris,OUT);
@@ -78,7 +78,7 @@ int gpio_write(int port, int value){
 	
 	sprintf(file, "/sys/class/gpio/gpio%d/value", port);
 	f = fopen(file, "w");
-	if (value)
+	if (!value)
 	    sprintf(ris,LOW);
 	else
 	    sprintf(ris,HIGH);
