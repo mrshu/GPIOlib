@@ -18,6 +18,7 @@ Example of usage
 For example reading of usage see `example_read.c` file and for writting see `example_write.c`
 
 ./example_read
+
 ./example_write
 
 
