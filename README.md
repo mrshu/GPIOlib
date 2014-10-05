@@ -4,22 +4,25 @@ GPIO Library
 Small library for reading from GPIO pins and writing to GPIO pins which are located on the expansion bus
 on [BeagleBoard](http://beagleboard.org)
 
-Make
+Installation
 ----------------
-//install GPIO library
-make install
 
-//make example_read & example_write
-make example
+- install GPIO library
+  
+  $ make install
+
+- make example_read & example_write
+  
+  make example
 
 Example of usage
 ----------------
 
-For example reading of usage see `example_read.c` file and for writting see `example_write.c`
+For an example on reading and writing from and to GPIO pins see `example_read.c` and `example_write.c`, respectively.
 
-./example_read
+  $ ./example_read
 
-./example_write
+  $ ./example_write
 
 
 (c) 2011 mr.Shu
